@@ -1,60 +1,60 @@
-actor Calc {
+import Float "mo:base/Float";
 
-  var cell : Int = 0;
+actor Calculator {
 
-  // Add.
-  public func add(n : Int) : async Int {
-    cell += n;
-    return cell;
-  };
+    var counter : Float = 0;
 
-  // Subtract.
-  public func sub(n : Int) : async Int {
-    cell -= n;
-    return cell;
-  };
-
-  // Multiply.
-  public func mul(n : Int) : async Int {
-    cell *= n;
-    return cell;
-  };
-
-  // Divide.
-  public func div(n : Int) : async ?Int {
-    if (n == 0) {
-      // 'null' encodes the division by zero error.
-      return null;
-    } else {
-      cell /= n;
-      return ?cell;
+    // Add.
+    public func add(n : Float) : async Float {
+        counter += n;
+        return counter;
     };
-  };
 
-  // Clear the calculator and reset its cell to zero.
-  public func reset() : async () {
-    cell := 0;
-  };
+    // Subtract.
+    public func sub(n : Float) : async Float {
+        counter -= n;
+        return counter;
+    };
 
-  public func see() : async Int {
-    return cell;
-  }
+    // Multiply.
+    public func mul(n : Float) : async Float {
+        counter *= n;
+        return counter;
+    };
 
+    // Divide.
+    public func div(n : Float) : async ?Float {
+        if (n == 0) {
+        // 'null' encodes the division by zero error.
+        return null;
+        } else {
+        counter /= n;
+        return ?counter;
+        };
+    };
 
-//   public func pot() : async Int { 
-    // return pot(cell, exponente);
-    // return exp;
-//   }
+    // Clear the calculator and reset its counter to zero.
+    public func reset() : async () {
+        counter := 0;
+    };
 
-//   public func pot(base: Int, exp: Int) : async Int {
-    // if (exp == 1) {
-    //    return base;     
-    // }else {
-    //    return pot(base, exp - 1) * base;
-    // }
-//   }
-
-
-
+    public func see() : async Float {
+        return counter;
+    };
+    // Step 8 - Implement power 
+    public func power(x : Float): async Float {
+        counter **= x;
+        return counter;
+    };
+    // Step 9 - Implement sqrt 
+    public func sqrt() : async ?Float {
+        counter **= 1/2;
+        return ?counter;
+    };
+    // Step 10 - Implement floor 
+    public func floor() : async Int {
+      counter := Float.floor(counter);
+      return Float.toInt(counter);
+    };
 };
 
